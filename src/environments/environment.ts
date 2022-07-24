@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig : {
+    apiKey: "AIzaSyA065dQxg28EAe2rJg1MWxToCQLLcKWq7M",
+    authDomain: "gochar-patrika.firebaseapp.com",
+    databaseURL: "https://gochar-patrika-default-rtdb.firebaseio.com",
+    projectId: "gochar-patrika",
+    storageBucket: "gochar-patrika.appspot.com",
+    messagingSenderId: "507449251837",
+    appId: "1:507449251837:web:ef88a4c3a58bdc4b2eeb94",
+    measurementId: "G-PR9XXFRCN0"
+  }
 };
 
 /*

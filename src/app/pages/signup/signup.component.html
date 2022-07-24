@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form>
+        <h3>Signup Here</h3>
+    
+        <label for="username">Email</label>
+        <input type="text" placeholder="Email or Phone" id="username" #userEmail required>
+    
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password"#userPwd required>
+    
+        <button (click)="authService.SignUp(userEmail.value,userPwd.value)">Log In</button>
+        <div class="social">
+          <div class="go" (click)="authService.GoogleAuth()"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div>
+    <div class="login" routerLink="login">
+      <a>Sign In</a>
+    </div>
+    </form>
+    </div>
