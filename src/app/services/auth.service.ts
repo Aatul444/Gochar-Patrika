@@ -1,5 +1,5 @@
-import { Injectable,NgZone } from '@angular/core';
 import * as auth from 'firebase/auth';
+import { Injectable,NgZone } from '@angular/core';
 import{AngularFirestoreModule, AngularFirestoreDocument, AngularFirestore} from '@angular/fire/compat/firestore'
 import{GoogleAuthProvider} from 'firebase/auth';
 import{AngularFireAuth} from '@angular/fire/compat/auth';
@@ -30,38 +30,41 @@ export class AuthService {
       }
     });
   }
-  SignIn(email: string, password: string) {
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
-        this.SetUserData(result.user);
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+  async signIn(email: string, password: string) {
+    try {
+      const result = await this.afAuth
+        .signInWithEmailAndPassword(email, password);
+      const user = JSON.parse(localStorage.getItem('user')!);
+      if (user !== null && user.emailVerified !== false ? true : false) {
+        this.router.navigate(['/dashboard']);
+      }
+      else {
+        this.setUserData(result.user);
+        this.router.navigate(['/dashboard']);
+      }
+    } catch (error:any) {
+      window.alert(error.message);
+    }
   }
-  SignUp(email: string, password: string) {
-    return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.SendVerificationMail();
-        this.SetUserData(result.user);
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+  async signUp(email: string, password: string) {
+    try {
+      const result = await this.afAuth
+        .createUserWithEmailAndPassword(email, password);
+      this.sendVerificationMail();
+      this.setUserData(result.user);
+      this.router.navigate(['/login']);
+    } catch (error:any) {
+      window.alert(error.message);
+    }
   }
-  SendVerificationMail() {
+  async sendVerificationMail() {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['verify-email-address']);
+        this.router.navigate(['/login']);
       });
   }
-  ForgotPassword(passwordResetEmail: string) {
+  async forgotPassword(passwordResetEmail: string) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
@@ -75,31 +78,31 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null && user.emailVerified !== false ? true : false;
   }
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
+  async googleAuth() {
+    return this.authLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['/dashboard']);
       }
     });
   }
-  AuthLogin(provider: any) {
+  async authLogin(provider: any) {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['/dashboard']);
         });
-        this.SetUserData(result.user);
+        this.setUserData(result.user);
       })
       .catch((error) => {
         window.alert(error);
       });
   }
 
-  SetUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
-    );
+  setUserData(user: any) {
+    // const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+    //   `users/${user.uid}`
+    // );
     const userData: User = {
       uid: user.uid,
       email: user.email,
@@ -107,15 +110,16 @@ export class AuthService {
       photoUrl: user.photoUrl,
       emailVerified: user.emailVerified,
     };
-    return userRef.set(userData, {
-      merge: true,
-    });
+    return userData
+    // return userRef.set(userData, {
+    //   merge: true,
+    // });
   }
   // Sign out
-  SignOut() {
+  async signOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['/login']);
     });
   }
 }

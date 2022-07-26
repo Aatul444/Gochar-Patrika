@@ -9,7 +9,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
 import { NewspaperComponent } from './newspaper/newspaper/newspaper.component';
 
 const routes: Routes = [
-  {path:" ", component:LoginComponent},
+  {path:"", component:LoginComponent},
   {path:"login", component:LoginComponent},
   {path:"signup", component:SignupComponent},
   {path:"dashboard", component:DashboardComponent,canActivate: [AuthGuard]},

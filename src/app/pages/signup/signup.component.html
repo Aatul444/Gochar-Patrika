@@ -3,22 +3,26 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form>
-        <h3>Signup Here</h3>
-    
+    <!-- <form (ngSubmit)="signUp()"> -->
+      <div class="form">    
+      <h3>Signup Here</h3>
         <label for="username">Email</label>
-        <input type="text" placeholder="Email or Phone" id="username" #userEmail required>
-    
+        <input type="text" placeholder="Email or Phone" id="username"[(ngModel)]='newEmailId' required>
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password"#userPwd required>
-    
-        <button (click)="authService.SignUp(userEmail.value,userPwd.value)">Log In</button>
-        <div class="social">
-          <div class="go" (click)="authService.GoogleAuth()"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        <input type="password" placeholder="Password" id="password" [(ngModel)]='newPassword' required>
+        <button (click)="signUp()">SignUp</button>
+        <div style="display: flex;">
+          <div class="forgot-password" routerLink="/forgotpassword">
+            <a style="font-size: small;cursor: pointer;margin: 0 0 0 20px;">Forgot Password</a>
+            </div>
+            <div class="signup" style="font-size: small;cursor: pointer;margin: 4px 0 0 50px;" routerLink="/login">
+              <a>Sign In</a>
+            </div>
+          </div>
+          <div class="social">
+            <div class="go" (click)="google()"><i class="fab fa-google"></i>  Google</div>
+            <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+          </div>
         </div>
-    <div class="login" routerLink="login">
-      <a>Sign In</a>
-    </div>
-    </form>
+    <!-- </form> -->
     </div>

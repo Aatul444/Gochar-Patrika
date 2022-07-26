@@ -6,6 +6,7 @@ import{AngularFireStorageModule} from '@angular/fire/compat/storage'
 import{AngularFireDatabaseModule} from '@angular/fire/compat/database'
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,8 @@ import { VerifyEmailComponent } from './pages/verify-email/verify-email.componen
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NewspaperComponent } from './newspaper/newspaper/newspaper.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DelComponent } from './z/del/del.component';
 
 @NgModule({
   declarations: [
@@ -29,16 +32,20 @@ import { NewspaperComponent } from './newspaper/newspaper/newspaper.component';
     VerifyEmailComponent,
     HeaderComponent,
     FooterComponent,
-    NewspaperComponent
+    NewspaperComponent,
+    DelComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

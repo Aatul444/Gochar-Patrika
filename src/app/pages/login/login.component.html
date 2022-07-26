@@ -3,25 +3,30 @@
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
-<form>
+<!-- <form [formGroup]="loginForm" (ngSubmit)="logIn()"> -->
+  <div class="form">    
+
     <h3>Login Here</h3>
 
-    <label for="username">Username</label>
-    <input type="text" placeholder="Email or Phone" id="username" #username required>
+    <label for="username">Email / Phone</label>
+    <input type="text" placeholder="Email or Phone" id="username" [(ngModel)]='newEmailId' required>
 
     <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password"#userPassword required>
+    <input type="password" placeholder="Password" id="password"[(ngModel)]='newPassword' required>
 
-    <button (click)="authService.SignIn(username.value,userPassword.value)">Log In</button>
+    <button (click)="logIn()">Log In</button>
+    <div class="flex">
+    <div class="forgot-password" routerLink="/forgotpassword">
+      <a>Forgot Password</a>
+      </div>
+      <div class="signup"routerLink="/signup">
+        <a>Sign up</a>
+      </div>
+    </div>
     <div class="social">
-      <div class="go" (click)="authService.GoogleAuth()"><i class="fab fa-google"></i>  Google</div>
+      <div class="go" (click)="google()"><i class="fab fa-google"></i>  Google</div>
       <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
     </div>
-<div class="forgot-password" routerLink="forgotpassword">
-<a>Forgot Password</a>
 </div>
-<div class="signup" routerLink="signup">
-  <a>Sign up</a>
-</div>
-</form>
+<!-- </form> -->
 </div>
