@@ -4,4 +4,5 @@ export interface Item {
     image: string
     title: string
     userName: string
+    uid:string
 }

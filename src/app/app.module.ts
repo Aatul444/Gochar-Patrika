@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NewspaperComponent } from './newspaper/newspaper/newspaper.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DelComponent } from './z/del/del.component';
+import { WeatherForcastComponent } from './components/weather-forcast/weather-forcast.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DelComponent } from './z/del/del.component';
     HeaderComponent,
     FooterComponent,
     NewspaperComponent,
-    DelComponent
+    DelComponent,
+    WeatherForcastComponent
   ],
   imports: [
     BrowserModule,
