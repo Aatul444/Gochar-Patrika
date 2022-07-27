@@ -154,15 +154,15 @@
     <div class="sales-boxes">
       <div class="recent-sales box">
         <div class="title"><textarea class="newsTitle" cols="3" rows="1" placeholder="News Title"
-            [(ngModel)]='newsTitle'></textarea>
+            [(ngModel)]='newsTitle' required ></textarea>
         </div>
 
         <div class="description"><textarea class="newsDescription" cols="4" rows="5" placeholder="News Description"
-            [(ngModel)]='newsDescription'></textarea>
+            [(ngModel)]='newsDescription' required ></textarea>
         </div>
 
         <div class="uploadButton button">
-          <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off" />
+          <input type="file" id="file" (change)="onFileSelected($event)" name="image" autocomplete="off" />
         </div>
         <div class="button">
           <a (click)="postNews()">Post news</a>
@@ -173,8 +173,8 @@
         <ul class="top-sales-details">
           <li *ngFor="let item of items | async">
             <a href="#">
-             <a> <img src="{{item.image}}"></a>
-              <span class="postTitle">{{item.title}}</span>
+             <a> <img src="{{  (item.image) ? item.image : '/assets/dummy-user.png'}}"></a>
+              <span class="postTitle">{{(item.title.length>25)? (item.title | slice:0:20)+'..':(item.title)}}</span>
             </a>
             <span class="postDate">{{item.date}}</span>
           </li>

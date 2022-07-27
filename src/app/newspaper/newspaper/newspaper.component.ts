@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./newspaper.component.scss']
 })
 export class NewspaperComponent implements OnInit {
-title='Gochar Patrika';
+title='Patrika';
   weather:Array<any>=
   [
     {

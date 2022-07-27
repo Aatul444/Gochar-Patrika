@@ -13,33 +13,32 @@ import { Item } from 'src/app/interfaces/item';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-// export interface Item { name: string; }
 export class DashboardComponent implements OnInit {
 
-  imageuploaded!: boolean;
   newsTitle = '';
-  newsDescription = ''
   news = {};
-  currentUser = JSON.parse(localStorage.getItem('user')!);
-  currDate = new Date()
-  selectedFile!: File;
   fb!: string;
-  downloadURL!: Observable<string>;
   allMyPosts = [];
+  selectedFile!: File;
+  newsDescription = ''
+  currDate = new Date()
+  imageuploaded!: boolean;
+  downloadURL!: Observable<string>;
+  currentUser = JSON.parse(localStorage.getItem('user')!);
+
   private itemsCollection!: AngularFirestoreCollection<Item>;
   items!: Observable<Item[]>;
-  
+
   ngOnInit(): void {
-    this.itemsCollection = this.db.collection<Item>('posts');
-    // if(this.itemsCollection.)
+    this.itemsCollection = this.db.collection<Item>('posts', ref => ref.where('uid', '==', this.currentUser.uid));
     this.items = this.itemsCollection.valueChanges();
+    console.log(this.items)
     // this.db.collection('posts').doc().collection(JSON.stringify(this.currDate).slice(1, 11)).get()
-   }
-   
+  }
+
   constructor(public authService: AuthService, private http: HttpClient, private db: AngularFirestore, private storage: AngularFireStorage) { }
 
   postNews() {
-    // this.databaseService.createNews(this.news)
     const postingNews = this.db.collection("posts")
     if (this.imageuploaded == true) {
       postingNews.add
@@ -48,22 +47,24 @@ export class DashboardComponent implements OnInit {
           description: this.newsDescription,
           image: this.fb,
           title: this.newsTitle,
+          uid:this.currentUser.uid,
           userName: this.currentUser.displayName,
-        })
+        });
+this.imageuploaded=false;
     }
     else {
       postingNews.add
-      ({
-        date: JSON.stringify(this.currDate).slice(1, 11),
-        description: this.newsDescription,
-        title: this.newsTitle,
-        userName: this.currentUser.displayName,
-      })
+        ({
+          date: JSON.stringify(this.currDate).slice(1, 11),
+          description: this.newsDescription,
+          title: this.newsTitle,
+          userName: this.currentUser.displayName,
+        })
     }
     this.newsTitle = ' ';
-    this.newsDescription = ' '
-    this.getPostsNews();
+    this.newsDescription = ' ';
   }
+
   getPostsNews() {
     const searchByDate = '27 July 2022';
     this.db.collection('posts').get().subscribe(posts => {
@@ -72,7 +73,9 @@ export class DashboardComponent implements OnInit {
       })
     });
   }
-  onFileSelected(event: any) {
+
+  onFileSelected(event: any) 
+  {
     var n = Date.now();
     const file = event.target.files[0];
     const filePath = `RoomsImages/${n}`;
@@ -88,12 +91,14 @@ export class DashboardComponent implements OnInit {
               this.fb = url;
               this.imageuploaded = true
             }
+            console.log('fb')
             console.log(this.fb);
           });
         })
       )
       .subscribe(url => {
         if (url) {
+          console.log('url')
           console.log(url);
         }
       });

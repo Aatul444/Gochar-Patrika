@@ -13,13 +13,15 @@ export class ForgotPasswordComponent implements OnInit {
     {
       userEmail: new FormControl(''),
     })
+
   constructor(public authService: AuthService) { }
+
   forgotpassword() {
     this.userEmail != this.forgotPassword.value.userEmail;
     this.authService.forgotPassword(this.userEmail);
     this.forgotPassword.reset();
   }
-  ngOnInit(): void {
-  }
+
+  ngOnInit(): void { }
 
 }
