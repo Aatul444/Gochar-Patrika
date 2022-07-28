@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.itemsCollection = this.db.collection<Item>('posts', ref => ref.where('uid', '==', this.currentUser.uid));
     this.items = this.itemsCollection.valueChanges();
+    if(this.items)
     console.log(this.items)
     // this.db.collection('posts').doc().collection(JSON.stringify(this.currDate).slice(1, 11)).get()
   }

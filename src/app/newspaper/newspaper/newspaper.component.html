@@ -1,27 +1,46 @@
 <div class="head">
     <div class="headerobjectswrapper">
-        <!-- <div class="weatherforcastbox"><span style="font-style: italic;">Weatherforcast for the next 24 hours: Plenty of {{weather.Weatherforcast}}</span><br><span>Wind: {{weather.Wind}}</span> SSE; Ther: {{weather.Wind}}<br><span>; Hum: {{weather.Hum}}</span></div> -->
+       <!-- <app-weather-forcast></app-weather-forcast> -->
         <header>{{title}}</header>
     </div>
 
-    <div class="subhead">New Delhi, INDIA - Thursday August 30, 1978 </div>
+    <div class="subhead">New Delhi, INDIA - {{getDate |date:'EEEE, MMMM d, y'}}</div>
 </div>
 <div class="content">
     <div class="collumns">
-                <div class="collumn">
+        <div class="collumn">
             <div class="news" *ngFor="let item of items | async">
-                    <div class="head"><span class="headline hl5">{{item.title}}</span><p><span class="headline hl6">{{item.userName}}</span></p></div>
-                    {{item.description}}
-                    <figure class="figure">
-                                        <img class="media" src="{{(item.image) ? item.image : 'http://i.giphy.com/PW7MoTD2d9pJK.gif'}}" alt="">
-                                        <figcaption class="figcaption">{{item.userName}} {{item.title}}</figcaption>
-                                </figure>
-        
-                    <!-- <p>It was this, as much as anything, that gave people courage, and I suppose the new arrivals from Woking also helped to restore confidence.  At any rate, as the dusk came on a slow, intermittent movement upon the sand pits began, a movement that seemed to gather force as the stillness of the evening about the cylinder remained unbroken.  Vertical black figures in twos and threes would advance, stop, watch, and advance again, spreading out as they did so in a thin irregular crescent that promised to enclose the pit in its attenuated horns.  I, too, on my side began to move towards the pit.</p> -->
-        
-                    <!-- <p>Then I saw some cabmen and others had walked boldly into the sand pits, and heard the clatter of hoofs and the gride of wheels.  I saw a lad trundling off the barrow of apples.  And then, within thirty yards of the pit, advancing from the direction of Horsell, I noted a little black knot of men, the foremost of whom was waving a white flag.</p> -->
-        
+                <div class="head"><span class="headline hl5">{{item.title}}</span>
+                    <p><span class="headline hl6">by : {{item.userName}}</span></p>
+                </div>
+                {{item.description}}
+                <figure class="figure">
+                    <img *ngIf="item.image" class="media"
+                        src="{{(item.image) ? item.image : 'http://i.giphy.com/PW7MoTD2d9pJK.gif'}}" alt="">
+                    <figcaption class="figcaption">{{item.userName}} {{item.title}}</figcaption>
+                </figure>
+
+                <!-- <p>It was this, as much as anything, that gave people courage, and I suppose the new arrivals from Woking also helped to restore confidence.  At any rate, as the dusk came on a slow, intermittent movement upon the sand pits began, a movement that seemed to gather force as the stillness of the evening about the cylinder remained unbroken.  Vertical black figures in twos and threes would advance, stop, watch, and advance again, spreading out as they did so in a thin irregular crescent that promised to enclose the pit in its attenuated horns.  I, too, on my side began to move towards the pit.</p> -->
+
+                <!-- <p>Then I saw some cabmen and others had walked boldly into the sand pits, and heard the clatter of hoofs and the gride of wheels.  I saw a lad trundling off the barrow of apples.  And then, within thirty yards of the pit, advancing from the direction of Horsell, I noted a little black knot of men, the foremost of whom was waving a white flag.</p> -->
+            </div>
         </div>
-    </div>            
+        <div class="collumn">
+            <div class="news" *ngFor="let item of items | async">
+                <div class="head"><span class="headline hl5">{{item.title}}</span>
+                    <p><span class="headline hl6">by : {{item.userName}}</span></p>
+                </div>
+                {{item.description}}
+                <figure class="figure">
+                    <img *ngIf="item.image" class="media"
+                        src="{{(item.image) ? item.image : 'http://i.giphy.com/PW7MoTD2d9pJK.gif'}}" alt="">
+                    <figcaption class="figcaption">{{item.userName}} {{item.title}}</figcaption>
+                </figure>
+
+                <!-- <p>It was this, as much as anything, that gave people courage, and I suppose the new arrivals from Woking also helped to restore confidence.  At any rate, as the dusk came on a slow, intermittent movement upon the sand pits began, a movement that seemed to gather force as the stillness of the evening about the cylinder remained unbroken.  Vertical black figures in twos and threes would advance, stop, watch, and advance again, spreading out as they did so in a thin irregular crescent that promised to enclose the pit in its attenuated horns.  I, too, on my side began to move towards the pit.</p> -->
+
+                <!-- <p>Then I saw some cabmen and others had walked boldly into the sand pits, and heard the clatter of hoofs and the gride of wheels.  I saw a lad trundling off the barrow of apples.  And then, within thirty yards of the pit, advancing from the direction of Horsell, I noted a little black knot of men, the foremost of whom was waving a white flag.</p> -->
+            </div>
+        </div>
     </div>
 </div>

@@ -12,6 +12,11 @@ export const environment = {
   storageBucket: "appusers-725e2.appspot.com",
   messagingSenderId: "420574719552",
   appId: "1:420574719552:web:cd820e0ccb7a33b0a439a5"   
+  },
+  weatherForCast:{
+    production: false,
+    apiKey: 'd1871c10a534542238a1db43639a6c41',
+    apiUrl: 'http://api.openweathermap.org/data/2.5'
   }
 };
 

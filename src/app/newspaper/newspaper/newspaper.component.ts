@@ -9,30 +9,23 @@ import { Item } from 'src/app/interfaces/item';
   templateUrl: './newspaper.component.html',
   styleUrls: ['./newspaper.component.scss']
 })
+
 export class NewspaperComponent implements OnInit {
+
   private itemsCollection!: AngularFirestoreCollection<Item>;
   items!: Observable<Item[]>;
-  
-title='Patrika';
-getDate = new Date();
-todaysDate=JSON.stringify(this.getDate).slice(1, 11)
 
-  weather:Array<any>=
-  [
-    {
-      'Weatherforcast':'sunshine',
-      'Wind':'7km/h',
-      'Ther':'21°C',
-      'Hum':'82%',
-    },
-  ];
+  title = 'Patrika';
+  getDate = new Date();
+  todaysDate = JSON.stringify(this.getDate).slice(1, 11)
+  newsColumn: any = []
 
-  newsColumn:any=[]
   ngOnInit(): void {
     this.itemsCollection = this.db.collection<Item>('posts', ref => ref.where('date', '==', this.todaysDate));
     this.items = this.itemsCollection.valueChanges();
     console.log(this.items);
   }
-  constructor( private db: AngularFirestore, private storage: AngularFireStorage) { }
+  
+  constructor(private db: AngularFirestore, private storage: AngularFireStorage) { }
 
 }
