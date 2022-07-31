@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { trigger, state, style, animate, transition, } from '@angular/animations';
 // import { DatabaseService } from 'src/app/services/firestoreDatabase/database.service';
 import { map, finalize } from "rxjs/operators";
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -11,7 +12,8 @@ import { Item } from 'src/app/interfaces/item';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: [  ]
 })
 export class DashboardComponent implements OnInit {
 
@@ -25,21 +27,26 @@ export class DashboardComponent implements OnInit {
   imageuploaded!: boolean;
   downloadURL!: Observable<string>;
   currentUser = JSON.parse(localStorage.getItem('user')!);
-
+  i!: number;
+  loadingHalt = false;
   private itemsCollection!: AngularFirestoreCollection<Item>;
   items!: Observable<Item[]>;
 
   ngOnInit(): void {
+    // this.loadingHalt = true;
     this.itemsCollection = this.db.collection<Item>('posts', ref => ref.where('uid', '==', this.currentUser.uid));
     this.items = this.itemsCollection.valueChanges();
-    if(this.items)
+    if (this.items)
+      console.log(this.i)
     console.log(this.items)
     // this.db.collection('posts').doc().collection(JSON.stringify(this.currDate).slice(1, 11)).get()
+    // this.loadingHalt = false;
   }
 
   constructor(public authService: AuthService, private http: HttpClient, private db: AngularFirestore, private storage: AngularFireStorage) { }
 
   postNews() {
+    this.loadingHalt = true;
     const postingNews = this.db.collection("posts")
     if (this.imageuploaded == true) {
       postingNews.add
@@ -48,10 +55,10 @@ export class DashboardComponent implements OnInit {
           description: this.newsDescription,
           image: this.fb,
           title: this.newsTitle,
-          uid:this.currentUser.uid,
+          uid: this.currentUser.uid,
           userName: this.currentUser.displayName,
         });
-this.imageuploaded=false;
+      this.loadingHalt = false;
     }
     else {
       postingNews.add
@@ -64,19 +71,22 @@ this.imageuploaded=false;
     }
     this.newsTitle = ' ';
     this.newsDescription = ' ';
+    this.imageuploaded = false;
   }
 
   getPostsNews() {
+    this.loadingHalt = true;
     const searchByDate = '27 July 2022';
     this.db.collection('posts').get().subscribe(posts => {
       posts.docs.forEach(post => {
         console.log(post.data());
       })
     });
+    this.loadingHalt = false;
   }
 
-  onFileSelected(event: any) 
-  {
+  async onFileSelected(event: any) {
+    this.loadingHalt = true;
     var n = Date.now();
     const file = event.target.files[0];
     const filePath = `RoomsImages/${n}`;
@@ -99,11 +109,12 @@ this.imageuploaded=false;
       )
       .subscribe(url => {
         if (url) {
-          console.log('url')
           console.log(url);
+          console.log('url')
         }
       });
     this.getPostsNews();
+    this.loadingHalt = false;
   }
 
   //  apiUrl = 'https://appusers-725e2-default-rtdb.firebaseio.com/'

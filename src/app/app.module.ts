@@ -7,6 +7,7 @@ import{AngularFireDatabaseModule} from '@angular/fire/compat/database'
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,9 @@ import { NewspaperComponent } from './newspaper/newspaper/newspaper.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DelComponent } from './z/del/del.component';
 import { WeatherForcastComponent } from './components/weather-forcast/weather-forcast.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { PreloaderComponent } from './components/preloader/preloader.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +39,16 @@ import { WeatherForcastComponent } from './components/weather-forcast/weather-fo
     FooterComponent,
     NewspaperComponent,
     DelComponent,
-    WeatherForcastComponent
+    WeatherForcastComponent,
+    AdminComponent,
+    AdminLoginComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,

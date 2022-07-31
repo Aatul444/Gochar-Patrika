@@ -8,10 +8,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 
 export class VerifyEmailComponent implements OnInit {
+  loadingHalt=false;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }
-
+  verifying() {
+    this.loadingHalt = true;
+    this.authService.sendVerificationMail();
+    this.loadingHalt = false;
+  }
 }
+

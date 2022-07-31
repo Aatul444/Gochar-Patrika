@@ -89,13 +89,13 @@
       <div class="dropdown" style="float:right;">
         <button class="dropbtn"><i class='bx bx-chevron-down'></i></button>
         <div class="dropdown-content">
-          <a href="#">
+          <a>
             <p>User ID: <strong>{{user.uid}}</strong></p>
           </a>
-          <a href="#">
+          <a>
             <p>Email: <strong>{{user.email}}</strong></p>
           </a>
-          <a href="#">
+          <a>
             <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
           </a>
         </div>
@@ -169,10 +169,10 @@
         </div>
       </div>
       <div class="top-sales box" >
-        <div class="title">All my Posts</div>
+        <div class="title">All my Posts </div>
         <ul class="top-sales-details">
-          <li *ngFor="let item of items | async">
-            <a href="#">
+          <li *ngFor="let item of items | async let i = index">
+            <a>
              <a> <img src="{{  (item.image) ? item.image : '/assets/dummy-user.png'}}"></a>
               <span class="postTitle">{{(item.title.length>25)? (item.title | slice:0:20)+'..':(item.title)}}</span>
             </a>
@@ -180,18 +180,7 @@
           </li>
         </ul>
       </div>
+      <app-preloader *ngIf="loadingHalt"></app-preloader>
     </div>
   </div>
 </section>
-
-<script>
-  let sidebar = document.querySelector(".sidebar");
-  let sidebarBtn = document.querySelector(".sidebarBtn");
-  sidebarBtn.onclick = function () {
-    sidebar.classList.toggle("active");
-    if (sidebar.classList.contains("active")) {
-      sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-    } else
-      sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-  }
-</script>

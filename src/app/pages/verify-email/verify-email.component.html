@@ -8,7 +8,7 @@
         </div>
         
         <div class="formGroup">
-          <button type="button" class="btn btnPrimary" (click)="authService.sendVerificationMail()">
+          <button type="button" class="btn btnPrimary" (click)="verifying()">
             <i class="fas fa-redo-alt"></i>
             Resend Verification Email
           </button>
@@ -18,4 +18,6 @@
         <span>Go back to?<span class="redirect" routerLink="/login"> Sign in</span></span>
       </div>
     </div>
+    <app-preloader *ngIf="loadingHalt"></app-preloader>
+
   </div>
