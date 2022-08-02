@@ -13,10 +13,10 @@ import { Item } from 'src/app/interfaces/item';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  animations: [  ]
+
 })
 export class DashboardComponent implements OnInit {
-
+  title = "Patrika;"
   newsTitle = '';
   news = {};
   fb!: string;
@@ -72,12 +72,13 @@ export class DashboardComponent implements OnInit {
     this.newsTitle = ' ';
     this.newsDescription = ' ';
     this.imageuploaded = false;
+    this.fb = " ";
   }
 
   getPostsNews() {
     this.loadingHalt = true;
     const searchByDate = '27 July 2022';
-    this.db.collection('posts').get().subscribe(posts => {
+    this.db.collection('posts', ref => ref.where('uid', '==', this.currentUser.uid)).get().subscribe(posts => {
       posts.docs.forEach(post => {
         console.log(post.data());
       })

@@ -1,10 +1,10 @@
 <div class="sidebar">
   <div class="logo-details">
     <i class='bx bxl-c-plus-plus'></i>
-    <span class="logo_name">Patrika</span>
+    <span class="logo_name">{{title}}</span>
   </div>
   <ul class="nav-links">
-    <li>
+    <li> 
       <a href="#" class="active">
         <i class='bx bx-grid-alt'></i>
         <span class="links_name">Dashboard</span>
@@ -107,9 +107,9 @@
     <div class="overview-boxes">
       <div class="box">
         <div class="right-side">
-          <div class="box-topic">Total Posts</div>
-          <div class="number">40,876</div>
-          <div class="indicator">
+          <div  class="box-topic">Total Posts</div>
+          <div  class="number">40,876</div>
+          <div  class="indicator">
             <i class='bx bx-up-arrow-alt'></i>
             <span class="text">Up from yesterday</span>
           </div>
@@ -130,21 +130,21 @@
       <div class="box">
         <div class="right-side">
           <div class="box-topic">Earned Profit</div>
-          <div class="number">$12,876</div>
+          <div  class="number">$12,876</div>
           <div class="indicator">
             <i class='bx bx-up-arrow-alt'></i>
-            <span class="text">Up from yesterday</span>
+            <span  class="text">Up from yesterday</span>
           </div>
         </div>
         <i class='bx bx-cart cart three'></i>
       </div>
       <div class="box">
         <div class="right-side">
-          <div class="box-topic">Deleted Posts</div>
-          <div class="number">11,086</div>
+          <div  class="box-topic">Deleted Posts</div>
+          <div  class="number">11,086</div>
           <div class="indicator">
             <i class='bx bx-down-arrow-alt down'></i>
-            <span class="text">Down From Today</span>
+            <span  class="text">Down From Today</span>
           </div>
         </div>
         <i class='bx bxs-cart-download cart four'></i>
@@ -164,12 +164,13 @@
         <div class="uploadButton button">
           <input type="file" id="file" (change)="onFileSelected($event)" name="image" autocomplete="off" />
         </div>
+        <img src="{{fb}}">
         <div class="button">
-          <a (click)="postNews()">Post news</a>
+          <a  (click)="postNews()">Post news</a>
         </div>
       </div>
       <div class="top-sales box" >
-        <div class="title">All my Posts </div>
+        <div  class="title">All my Posts </div>
         <ul class="top-sales-details">
           <li *ngFor="let item of items | async let i = index">
             <a>

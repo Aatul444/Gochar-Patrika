@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   firebaseConfig : {
     apiKey: "AIzaSyAPCzh_4CMd2K6urD6V0wGNInJ3_Py3Q_E",
   authDomain: "appusers-725e2.firebaseapp.com",
@@ -14,7 +14,7 @@ export const environment = {
   appId: "1:420574719552:web:cd820e0ccb7a33b0a439a5"   
   },
   weatherForCast:{
-    production: false,
+    production: true,
     apiKey: 'd1871c10a534542238a1db43639a6c41',
     apiUrl: 'http://api.openweathermap.org/data/2.5'
   }
