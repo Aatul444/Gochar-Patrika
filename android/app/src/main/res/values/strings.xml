@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">gocharPatrika</string>
+    <string name="title_activity_main">gocharPatrika</string>
+    <string name="package_name">com.gochar_patrika.app</string>
+    <string name="custom_url_scheme">com.gochar_patrika.app</string>
+</resources>
