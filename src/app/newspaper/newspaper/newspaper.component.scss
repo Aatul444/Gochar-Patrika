@@ -60,6 +60,8 @@ p {
 	vertical-align: top;
 	margin-bottom: 50px;
 	transition: all 0.7s;
+  text-align: justify;
+  text-justify: inter-word;
 }
 .collumn + .collumn {
 	border-left: 1px solid #2f2f2f;
@@ -234,15 +236,18 @@ p {
 	.weatherforcastbox {
 		display: none;
 	}
+  .collumn {
+		width: 35%;
+	}
 }
 @media only all and (max-width: 1200px) {
 	.collumn {
-		width: 31%;
+		width: 30%;
 	}
 }
 @media only all and (max-width: 900px) {
 	.collumn {
-		width: 47%;
+		width: 50%;
 	}
 }
 @media only all and (max-width: 600px) {

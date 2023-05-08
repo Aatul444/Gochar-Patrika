@@ -19,7 +19,16 @@ title='Gochar Patrika';
   newsColumn:any=[]
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
+  allNews=[
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+  ]
 
 }

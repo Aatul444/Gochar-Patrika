@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import{AngularFirestoreModule} from '@angular/fire/compat/firestore'
-import{AngularFireStorageModule} from '@angular/fire/compat/storage'
-import{AngularFireDatabaseModule} from '@angular/fire/compat/database'
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NewspaperComponent } from './newspaper/newspaper/newspaper.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewsComponent } from './components/news/news.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     NewspaperComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
   providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
